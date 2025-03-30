@@ -218,7 +218,7 @@ const SettingsPage = () => {
             <CardContent className="space-y-4">
               <div className="p-6 text-center">
                 <h2 className="text-3xl font-bold text-primary mb-2">fgexpensivibe</h2>
-                <p className="text-lg mb-4">Manage your workflow, tasks, notes, and expenses</p>
+                <p className="text-lg mb-4">Manage your workflow, tasks, notes, and expenses—all in one place. Your data is stored locally on your device, ensuring privacy. Remember to back up regularly. Free forever 🚀</p>
                 
                 <div className="space-y-2 mt-6">
                   <p className="text-sm text-muted-foreground">Developed by</p>
