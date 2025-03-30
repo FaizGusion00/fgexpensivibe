@@ -292,7 +292,7 @@ const ExpensesPage = () => {
             <CardTitle className="text-sm font-medium">Monthly Total</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">${totalForMonth.toFixed(2)}</div>
+            <div className="text-2xl font-bold">RM{totalForMonth.toFixed(2)}</div>
             <p className="text-xs text-muted-foreground">
               For {format(selectedDate, "MMMM yyyy")}
             </p>
@@ -383,14 +383,14 @@ const ExpensesPage = () => {
                           <Cell key={`cell-${index}`} fill={EXPENSE_COLORS[index % EXPENSE_COLORS.length]} />
                         ))}
                       </Pie>
-                      <Tooltip formatter={(value) => `$${value}`} />
+                      <Tooltip formatter={(value) => `RM${value}`} />
                       <Legend />
                     </PieChart>
                   ) : (
                     <BarChart data={expensesByDay}>
                       <XAxis dataKey="name" />
                       <YAxis />
-                      <Tooltip formatter={(value) => `$${value}`} />
+                      <Tooltip formatter={(value) => `RM${value}`} />
                       <Bar dataKey="value" fill="#8B5CF6" radius={[4, 4, 0, 0]} />
                     </BarChart>
                   )}
@@ -439,7 +439,7 @@ const ExpensesPage = () => {
                         </div>
                       </div>
                       <div className="flex items-center gap-3">
-                        <span className="font-medium">${expense.amount.toFixed(2)}</span>
+                        <span className="font-medium">RM{expense.amount.toFixed(2)}</span>
                         <div className="flex gap-1">
                           <Button
                             size="sm"

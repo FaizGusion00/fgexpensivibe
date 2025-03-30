@@ -84,7 +84,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ finishLoading }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9 }}
         >
-          Owned by FGCompany Original
+          Owned by FGCompany Original (Free for Public Use)
         </motion.div>
       </motion.div>
     </AnimatePresence>
