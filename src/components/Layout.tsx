@@ -40,7 +40,7 @@ const Sidebar = () => {
     <div className="bg-sidebar h-full flex flex-col overflow-y-auto pb-4">
       <div className="px-3 py-6">
         <h1 className="text-sidebar-foreground font-bold text-xl tracking-tight">
-          expensivibe
+          fgexpensivibe
         </h1>
       </div>
       <div className="space-y-1 px-3 flex-1">
@@ -79,7 +79,7 @@ const MobileNav = ({ onClose }: { onClose: () => void }) => {
       <div className="fixed top-0 left-0 bottom-0 w-4/5 max-w-xs bg-sidebar animate-slide-in-left overflow-y-auto">
         <div className="flex items-center justify-between p-4">
           <h1 className="text-sidebar-foreground font-bold text-xl tracking-tight">
-            expensivibe
+            fgexpensivibe
           </h1>
           <button 
             onClick={onClose}
