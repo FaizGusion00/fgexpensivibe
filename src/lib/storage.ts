@@ -1,6 +1,6 @@
 
 import { AppData, Task, Note, Expense, AppSettings } from './types';
-import { toast } from "@/components/ui/sonner";
+import { toast } from "sonner";
 
 // Initial data
 const defaultData: AppData = {

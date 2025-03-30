@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -26,7 +25,7 @@ import {
 } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
 import { clearAllData, exportData, importData } from "@/lib/storage";
-import { toast } from "@/components/ui/sonner";
+import { toast } from "sonner";
 
 const SettingsPage = () => {
   const { theme, setTheme } = useTheme();

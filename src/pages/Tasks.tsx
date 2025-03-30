@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -41,7 +40,7 @@ import {
 } from "@/lib/storage";
 import { Task } from "@/lib/types";
 import { format } from "date-fns";
-import { toast } from "@/components/ui/sonner";
+import { toast } from "sonner";
 
 const TasksPage = () => {
   const [tasks, setTasks] = useState<Task[]>([]);

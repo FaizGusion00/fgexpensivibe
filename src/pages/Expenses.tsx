@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -38,7 +37,7 @@ import {
 import { getExpenses, addExpense, updateExpense, deleteExpense } from "@/lib/storage";
 import { Expense } from "@/lib/types";
 import { format, parse, startOfMonth, endOfMonth, eachDayOfInterval } from "date-fns";
-import { toast } from "@/components/ui/sonner";
+import { toast } from "sonner";
 
 const ExpensesPage = () => {
   const [expenses, setExpenses] = useState<Expense[]>([]);
@@ -47,24 +46,20 @@ const ExpensesPage = () => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [chartView, setChartView] = useState<"category" | "daily">("category");
   
-  // Form states
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("food");
   const [date, setDate] = useState<Date>(new Date());
   const [calendarOpen, setCalendarOpen] = useState(false);
   
-  // Get all expenses
   const loadExpenses = () => {
     setExpenses(getExpenses());
   };
   
-  // Load expenses on component mount
   useEffect(() => {
     loadExpenses();
   }, []);
   
-  // Reset form
   const resetForm = () => {
     setAmount("");
     setDescription("");
@@ -73,7 +68,6 @@ const ExpensesPage = () => {
     setEditExpense(null);
   };
   
-  // Handle expense creation/update
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -110,7 +104,6 @@ const ExpensesPage = () => {
     loadExpenses();
   };
   
-  // Set up form for editing
   const handleEditExpense = (expense: Expense) => {
     setEditExpense(expense);
     setAmount(expense.amount.toString());
@@ -120,14 +113,12 @@ const ExpensesPage = () => {
     setOpen(true);
   };
   
-  // Handle expense deletion
   const handleDeleteExpense = (id: string) => {
     deleteExpense(id);
     toast.success("Expense deleted successfully");
     loadExpenses();
   };
   
-  // Filter expenses for the selected month
   const monthStart = startOfMonth(selectedDate);
   const monthEnd = endOfMonth(selectedDate);
   
@@ -136,10 +127,8 @@ const ExpensesPage = () => {
     return expenseDate >= monthStart && expenseDate <= monthEnd;
   });
   
-  // Calculate total for the selected month
   const totalForMonth = filteredExpenses.reduce((sum, expense) => sum + expense.amount, 0);
   
-  // Group expenses by category for pie chart
   const expensesByCategory = filteredExpenses.reduce((acc: Record<string, number>, expense) => {
     if (acc[expense.category]) {
       acc[expense.category] += expense.amount;
@@ -154,7 +143,6 @@ const ExpensesPage = () => {
     value,
   }));
   
-  // Group expenses by day for bar chart
   const days = eachDayOfInterval({ start: monthStart, end: monthEnd });
   
   const expensesByDay = days.map(day => {
@@ -175,12 +163,10 @@ const ExpensesPage = () => {
     };
   });
   
-  // Define chart colors
   const EXPENSE_COLORS = ['#8B5CF6', '#A78BFA', '#C4B5FD', '#DDD6FE', '#EDE9FE', '#F5F3FF', '#6D28D9', '#5B21B6'];
   
-  // Expense categories
   const categories = ["food", "transportation", "entertainment", "utilities", "shopping", "health", "education", "other"];
-
+  
   return (
     <div className="space-y-6 animate-fade-in">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -31,7 +30,7 @@ import {
 import { getNotes, addNote, updateNote, deleteNote } from "@/lib/storage";
 import { Note } from "@/lib/types";
 import { format } from "date-fns";
-import { toast } from "@/components/ui/sonner";
+import { toast } from "sonner";
 
 const NotesPage = () => {
   const [notes, setNotes] = useState<Note[]>([]);
@@ -40,22 +39,18 @@ const NotesPage = () => {
   const [open, setOpen] = useState(false);
   const [editNote, setEditNote] = useState<Note | null>(null);
   
-  // Form states
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [category, setCategory] = useState("personal");
   
-  // Get all notes
   const loadNotes = () => {
     setNotes(getNotes());
   };
   
-  // Load notes on component mount
   useEffect(() => {
     loadNotes();
   }, []);
   
-  // Reset form
   const resetForm = () => {
     setTitle("");
     setContent("");
@@ -63,7 +58,6 @@ const NotesPage = () => {
     setEditNote(null);
   };
   
-  // Handle note creation/update
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -101,7 +95,6 @@ const NotesPage = () => {
     loadNotes();
   };
   
-  // Set up form for editing
   const handleEditNote = (note: Note) => {
     setEditNote(note);
     setTitle(note.title);
@@ -110,14 +103,12 @@ const NotesPage = () => {
     setOpen(true);
   };
   
-  // Handle note deletion
   const handleDeleteNote = (id: string) => {
     deleteNote(id);
     toast.success("Note deleted successfully");
     loadNotes();
   };
   
-  // Filter notes by search term and category
   const filteredNotes = notes.filter(note => {
     const matchesSearch = 
       note.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -128,10 +119,8 @@ const NotesPage = () => {
     return matchesSearch && matchesCategory;
   });
   
-  // Extract unique categories from notes
   const categories = ["personal", "work", "ideas", "study", "travel"];
   
-  // Get unique note categories from existing notes
   const uniqueCategories = Array.from(
     new Set(notes.map(note => note.category))
   );
