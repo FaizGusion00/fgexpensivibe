@@ -1,5 +1,6 @@
+
 import React, { useState } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -21,7 +22,8 @@ import {
   Trash2, 
   Download, 
   Upload,
-  Settings as SettingsIcon
+  Settings as SettingsIcon,
+  Info
 } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
 import { clearAllData, exportData, importData } from "@/lib/storage";
@@ -36,7 +38,7 @@ const SettingsPage = () => {
     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(data);
     const downloadAnchorNode = document.createElement('a');
     downloadAnchorNode.setAttribute("href", dataStr);
-    downloadAnchorNode.setAttribute("download", "expensivibe_data.json");
+    downloadAnchorNode.setAttribute("download", "fgexpensivibe_data.json");
     document.body.appendChild(downloadAnchorNode);
     downloadAnchorNode.click();
     downloadAnchorNode.remove();
@@ -72,12 +74,15 @@ const SettingsPage = () => {
       <h1 className="text-3xl font-bold">Settings</h1>
       
       <Tabs defaultValue="appearance" className="w-full">
-        <TabsList className="grid w-full sm:w-[400px] grid-cols-2">
+        <TabsList className="grid w-full sm:w-[400px] grid-cols-3">
           <TabsTrigger value="appearance">
             <Sun className="h-4 w-4 mr-2" /> Appearance
           </TabsTrigger>
           <TabsTrigger value="data">
-            <SettingsIcon className="h-4 w-4 mr-2" /> Data Management
+            <SettingsIcon className="h-4 w-4 mr-2" /> Data 
+          </TabsTrigger>
+          <TabsTrigger value="about">
+            <Info className="h-4 w-4 mr-2" /> About
           </TabsTrigger>
         </TabsList>
         
@@ -86,7 +91,7 @@ const SettingsPage = () => {
             <CardHeader>
               <CardTitle>Appearance</CardTitle>
               <CardDescription>
-                Customize how expensivibe looks and feels
+                Customize how fgexpensivibe looks and feels
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -196,6 +201,39 @@ const SettingsPage = () => {
                       </AlertDialogFooter>
                     </AlertDialogContent>
                   </AlertDialog>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="about" className="mt-4">
+          <Card className="animate-slide-in-bottom">
+            <CardHeader>
+              <CardTitle>About fgexpensivibe</CardTitle>
+              <CardDescription>
+                Information about this application
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="p-6 text-center">
+                <h2 className="text-3xl font-bold text-primary mb-2">fgexpensivibe</h2>
+                <p className="text-lg mb-4">Manage your workflow, tasks, notes, and expenses</p>
+                
+                <div className="space-y-2 mt-6">
+                  <p className="text-sm text-muted-foreground">Developed by</p>
+                  <p className="font-medium">Faiz Nasir</p>
+                </div>
+                
+                <div className="space-y-2 mt-6">
+                  <p className="text-sm text-muted-foreground">Owned by</p>
+                  <p className="font-medium">FGCompany Original</p>
+                </div>
+                
+                <div className="mt-8 pt-6 border-t">
+                  <p className="text-sm text-muted-foreground">
+                    &copy; {new Date().getFullYear()} FGCompany Original. All rights reserved.
+                  </p>
                 </div>
               </div>
             </CardContent>

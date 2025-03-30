@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -41,6 +42,7 @@ import {
 import { Task } from "@/lib/types";
 import { format } from "date-fns";
 import { toast } from "sonner";
+import PriorityCircle from "@/components/PriorityCircle";
 
 const TasksPage = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -214,12 +216,34 @@ const TasksPage = () => {
                         onValueChange={(value: any) => setPriority(value)}
                       >
                         <SelectTrigger>
-                          <SelectValue placeholder="Select priority" />
+                          <SelectValue placeholder="Select priority">
+                            {priority && (
+                              <div className="flex items-center gap-2">
+                                <PriorityCircle priority={priority} />
+                                <span className="capitalize">{priority}</span>
+                              </div>
+                            )}
+                          </SelectValue>
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="low">Low</SelectItem>
-                          <SelectItem value="medium">Medium</SelectItem>
-                          <SelectItem value="high">High</SelectItem>
+                          <SelectItem value="low" className="flex items-center gap-2">
+                            <div className="flex items-center gap-2 w-full">
+                              <PriorityCircle priority="low" />
+                              <span>Low</span>
+                            </div>
+                          </SelectItem>
+                          <SelectItem value="medium" className="flex items-center gap-2">
+                            <div className="flex items-center gap-2 w-full">
+                              <PriorityCircle priority="medium" />
+                              <span>Medium</span>
+                            </div>
+                          </SelectItem>
+                          <SelectItem value="high" className="flex items-center gap-2">
+                            <div className="flex items-center gap-2 w-full">
+                              <PriorityCircle priority="high" />
+                              <span>High</span>
+                            </div>
+                          </SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -347,7 +371,7 @@ const TasksPage = () => {
                               </span>
                             )}
                             <span
-                              className={`text-xs px-2 py-1 rounded-full ${
+                              className={`text-xs px-2 py-1 rounded-full flex items-center gap-1 ${
                                 task.priority === "high"
                                   ? "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300"
                                   : task.priority === "medium"
@@ -355,6 +379,7 @@ const TasksPage = () => {
                                   : "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300"
                               }`}
                             >
+                              <PriorityCircle priority={task.priority} size={12} />
                               {task.priority}
                             </span>
                             <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">

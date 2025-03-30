@@ -12,7 +12,7 @@ const defaultData: AppData = {
   }
 };
 
-const LOCAL_STORAGE_KEY = 'expensivibe_data';
+const LOCAL_STORAGE_KEY = 'fgexpensivibe_data';
 
 // Helper to generate unique IDs
 export const generateId = (): string => {
@@ -174,4 +174,12 @@ export const importData = (jsonData: string): boolean => {
     console.error('Failed to import data:', error);
     return false;
   }
+};
+
+export const formatCurrency = (amount: number): string => {
+  return new Intl.NumberFormat('ms-MY', {
+    style: 'currency',
+    currency: 'MYR',
+    minimumFractionDigits: 2
+  }).format(amount);
 };
