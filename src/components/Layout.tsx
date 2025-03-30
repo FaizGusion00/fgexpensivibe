@@ -129,7 +129,7 @@ const Layout = ({ children }: LayoutProps) => {
             <Menu />
           </Button>
           <div className="text-sm font-medium text-muted-foreground">
-            Welcome to your productivity hub
+            Welcome to your local productivity hub! 😘
           </div>
         </header>
         
